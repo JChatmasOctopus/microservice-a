@@ -81,3 +81,21 @@ stages:
         git push origin HEAD:main
       displayName: 'Commit updated VERSION file'
       condition: succeeded()
+
+    - task: OctopusBuildInformation@6
+      inputs:
+        OctoConnectedServiceName: 'OctopusDemo'
+        Space: 'Family Info Center'
+        PackageIds: '$(image_name)'
+        PackageVersion: '$(tag)'
+        Replace: 'true'
+        
+    - task: OctopusCreateRelease@6
+      inputs:
+        OctoConnectedServiceName: 'OctopusDemo'
+        Space: 'Family Info Center'
+        Project: '$(image_name)'
+        ReleaseNumber: '$(tag)'
+        Channel: 'Default'
+        DefaultPackageVersion: '$(tag)'
+        Packages: '$(image_name):$(tag)'
