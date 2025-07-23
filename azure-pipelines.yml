@@ -86,7 +86,7 @@ stages:
       inputs:
         OctoConnectedServiceName: 'OctopusDemo'
         Space: 'Family Info Center'
-        PackageIds: '$(image_name)'
+        PackageIds: 'octopus-samples/octopus-demo/$(image_name)'
         PackageVersion: '$(tag)'
         Replace: 'true'
         
